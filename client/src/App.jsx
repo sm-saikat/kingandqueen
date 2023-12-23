@@ -6,11 +6,12 @@ import {
   Accordion,
   AccordionItem,
   DescriptionForAccordion,
+  BannarCards,
 } from "@/components/ui";
 
 function App() {
   return (
-    <div>
+    <div className="mb-8">
       <Notice
         noticeIcon="info"
         className="bg-red-500"
@@ -88,6 +89,22 @@ function App() {
           </AccordionItem>
         </Accordion>
       </div>
+      <BannarCards
+        hrefLeft="/oneRout"
+        hrefRight="/twoRout"
+        leftTitle="Left"
+        srcLeft="./src/assets/img/1.webp"
+        srcRight="./src/assets/img/2.webp"
+        rightTitle="Right"
+      />
+      <BannarCards
+        hrefLeft="/oneRout"
+        hrefRight="/twoRout"
+        leftTitle="Left"
+        srcLeft="./src/assets/img/2.webp"
+        srcRight="./src/assets/img/1.webp"
+        rightTitle="Right"
+      />
     </div>
   );
 }
