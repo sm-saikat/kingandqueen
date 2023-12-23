@@ -1,10 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@font-face {
+  font-family: "Helvetica";
+  src: url("./font/h1-100.ttf") format("ttf") 100,
+    url("./font/h1-200.ttf") format("ttf") 200,
+    url("./font/h1-300.ttf") format("ttf") 300,
+    url("./font/h1-400.ttf") format("ttf") 400,
+    url("./font/h1-500.ttf") format("ttf") 500;
+}
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("./font/h2-100.ttf") format("ttf") 100,
+    url("./font/h2-200.ttf") format("ttf") 200,
+    url("./font/h2-300.ttf") format("ttf") 300,
+    url("./font/h2-400.ttf") format("ttf") 400,
+    url("./font/h2-500.ttf") format("ttf") 500;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
