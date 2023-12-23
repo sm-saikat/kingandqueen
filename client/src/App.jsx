@@ -8,6 +8,7 @@ import {
   DescriptionForAccordion,
   BannarCards,
   Bannar,
+  ProductCard,
 } from "@/components/ui";
 
 function App() {
@@ -112,6 +113,29 @@ function App() {
         leftButton="Left"
         rightButton="Right"
       />
+      <div>
+        <ProductCard
+          className=""
+          link="exampla.com"
+          src="./src/assets/img/4.webp"
+          hoverSrc="./src/assets/img/4.1.webp"
+          title="Title"
+        />
+        <ProductCard
+          className=""
+          link="exampla.com"
+          src="./src/assets/img/4.webp"
+          hoverSrc="./src/assets/img/4.1.webp"
+          title="Title"
+        />
+        <ProductCard
+          className=""
+          link="exampla.com"
+          src="./src/assets/img/4.webp"
+          hoverSrc="./src/assets/img/4.1.webp"
+          title="Title"
+        />
+      </div>
     </div>
   );
 }
