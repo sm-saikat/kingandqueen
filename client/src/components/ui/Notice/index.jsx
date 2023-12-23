@@ -9,18 +9,25 @@ import { Link } from "@chakra-ui/react";
 const Notice = (props) => {
   return (
     <>
-      <Alert status="info" className={props.noticeBackground}>
-        <AlertIcon className={props.noticeIcon} />
-        <AlertTitle className={props.noticeTitleStyle}>
-          {props.noticeTitle}
+      <Alert
+        status={props.noticeIcon}
+        className={`p-4 py-3 flex align-middle justify-center ${props.className}`}
+      >
+        <AlertIcon className={`text-white w-4 h-4 mr-2 ${props.noticeIcon}`} />
+        <AlertTitle
+          className={`pt-1 text-[12.5px] font-medium text-black mr-1.5  ${props.noticeTitleStyle}`}
+        >
+          <p className="font-helvetica-neue">{props.noticeTitle}</p>
         </AlertTitle>
-        <AlertDescription className={props.noticeDescriptionStyle}>
+        <AlertDescription
+          className={`pt-1 text-[12.5px] font-medium text-black font-helvetica-neue ${props.noticeDescriptionStyle}`}
+        >
           <Link
-            className={props.noticeLinkStyle}
+            className={`underline hover:text-gray-500 hover:no-underline ${props.noticeLinkStyle}`}
             href={props.noticeLink}
             isExternal
           >
-            {props.noticeDescription}
+            <p className="font-helvetica-neue">{props.noticeDescription}</p>
           </Link>
         </AlertDescription>
       </Alert>

@@ -12,25 +12,20 @@ function App() {
   return (
     <div>
       <Notice
-        noticeBackground="bg-red-500 p-4 py-3 flex align-middle justify-center"
-        noticeIcon="text-white w-4 h-4 mr-2"
+        noticeIcon="info"
+        className="bg-red-500"
         noticeTitle="UP TO 50% OFF ON SELECTED STYLES. CHECK THE "
-        noticeTitleStyle="text-[12.5px] font-medium text-black mr-1.5 font-helvetica-neue"
         noticeDescription="HOLIDAY SHIPPING DEADLINES."
-        noticeDescriptionStyle="text-[12.5px] font-medium text-black font-helvetica-neue"
         noticeLink="https://chakra-ui.com"
-        noticeLinkStyle="underline hover:text-gray-500 hover:no-underline"
       />
 
       <div className="w-1/4">
-        <Button buttonStyle="">Default</Button>
-        <Button buttonStyle=" hover:bg-black hover:text-white">
-          Add Hover
-        </Button>
-        <Button buttonStyle=" bg-black text-white hover:bg-white hover:text-black ">
+        <Button className="">Default</Button>
+        <Button className=" hover:bg-black hover:text-white">Add Hover</Button>
+        <Button className=" bg-black text-white hover:bg-white hover:text-black ">
           Customize button one
         </Button>
-        <Button buttonStyle=" border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-600 ">
+        <Button className=" border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-600 ">
           Customize button two
         </Button>
       </div>
