@@ -6,3 +6,4 @@ export { default as Accordion } from "./Accordion";
 export { default as AccordionItem } from "./AccordionItem";
 export { default as DescriptionForAccordion } from "./DescriptionForAccordion";
 export { default as BannarCards } from "./BannarCards";
+export { default as Bannar } from "./Bannar";

@@ -7,6 +7,7 @@ import {
   AccordionItem,
   DescriptionForAccordion,
   BannarCards,
+  Bannar,
 } from "@/components/ui";
 
 function App() {
@@ -104,6 +105,12 @@ function App() {
         srcLeft="./src/assets/img/2.webp"
         srcRight="./src/assets/img/1.webp"
         rightTitle="Right"
+      />
+      <Bannar
+        link="href/index/"
+        img="./src/assets/img/3.webp"
+        leftButton="Left"
+        rightButton="Right"
       />
     </div>
   );
