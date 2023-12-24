@@ -5,13 +5,25 @@ import {
   Notice,
   Accordion,
   AccordionItem,
-  DescriptionForAccordion,
   BannarCards,
-  Bannar,
   ProductCard,
+  Banner,
 } from "@/components/ui";
 
 function App() {
+
+  const accordionData = [
+    {
+      title: 'Accordion title one',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae id accusantium, nam minus quaerat iure neque dignissimos cupiditate nemo animi qui a fugit consequatur! Fuga distinctio reprehenderit labore quam molestiae?'
+    },
+
+    {
+      title: 'Accordion title two',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae id accusantium, nam minus quaerat iure neque dignissimos cupiditate nemo animi qui a fugit consequatur! Fuga distinctio reprehenderit labore quam molestiae?'
+    }
+  ]
+
   return (
     <div className="mb-8">
       <Notice
@@ -41,54 +53,11 @@ function App() {
       </div>
       <div className="w-1/4">
         <Accordion>
-          <AccordionItem accordionButtonText="button one">
-            <DescriptionForAccordion
-              detailsOne="WOMEN'S BLACK LEATHER ZIP-UP SHOULDER BAG, EXTENDABLE STRAP WITH GOLD MONOGRAM CHARM AT BOTTOM AND GOLD METAL PALM ANGELS LOGO PLACED ON FRONT. MADE IN ITALY."
-              detailsTwo="100% COTTON
-
-              100% LEATHER"
-              detailsThree="WIDTH:24CM HEIGHT:13,4CM DEPTH:6CM
-              DROP LENGTH:26CM
-              WEIGHT:175 GR"
-              productId="PWNN028S24LEA0011076"
-            />
-          </AccordionItem>
-          <AccordionItem accordionButtonText="button one">
-            <DescriptionForAccordion
-              detailsOne="WOMEN'S BLACK LEATHER ZIP-UP SHOULDER BAG, EXTENDABLE STRAP WITH GOLD MONOGRAM CHARM AT BOTTOM AND GOLD METAL PALM ANGELS LOGO PLACED ON FRONT. MADE IN ITALY."
-              detailsTwo="100% COTTON
-
-              100% LEATHER"
-              detailsThree="WIDTH:24CM HEIGHT:13,4CM DEPTH:6CM
-              DROP LENGTH:26CM
-              WEIGHT:175 GR"
-              productId="PWNN028S24LEA0011076"
-            />
-          </AccordionItem>
-          <AccordionItem accordionButtonText="button one">
-            <DescriptionForAccordion
-              detailsOne="WOMEN'S BLACK LEATHER ZIP-UP SHOULDER BAG, EXTENDABLE STRAP WITH GOLD MONOGRAM CHARM AT BOTTOM AND GOLD METAL PALM ANGELS LOGO PLACED ON FRONT. MADE IN ITALY."
-              detailsTwo="100% COTTON
-
-              100% LEATHER"
-              detailsThree="WIDTH:24CM HEIGHT:13,4CM DEPTH:6CM
-              DROP LENGTH:26CM
-              WEIGHT:175 GR"
-              productId="PWNN028S24LEA0011076"
-            />
-          </AccordionItem>
-          <AccordionItem accordionButtonText="button one">
-            <DescriptionForAccordion
-              detailsOne="WOMEN'S BLACK LEATHER ZIP-UP SHOULDER BAG, EXTENDABLE STRAP WITH GOLD MONOGRAM CHARM AT BOTTOM AND GOLD METAL PALM ANGELS LOGO PLACED ON FRONT. MADE IN ITALY."
-              detailsTwo="100% COTTON
-
-              100% LEATHER"
-              detailsThree="WIDTH:24CM HEIGHT:13,4CM DEPTH:6CM
-              DROP LENGTH:26CM
-              WEIGHT:175 GR"
-              productId="PWNN028S24LEA0011076"
-            />
-          </AccordionItem>
+          {
+            accordionData.map(item => {
+              return <AccordionItem title={item.title}>{item.description}</AccordionItem>
+            })
+          }
         </Accordion>
       </div>
       <BannarCards
@@ -107,12 +76,13 @@ function App() {
         srcRight="./src/assets/img/1.webp"
         rightTitle="Right"
       />
-      <Bannar
-        link="href/index/"
-        img="./src/assets/img/3.webp"
-        leftButton="Left"
-        rightButton="Right"
+      <Banner
+        link={"href/index/"}
+        image={"./src/assets/img/3.webp"}
+        leftBtnText={"Left"}
+        rightBtnText={"Right"}
       />
+ 
       <div>
         <ProductCard
           className=""
