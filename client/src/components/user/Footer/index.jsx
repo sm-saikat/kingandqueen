@@ -46,6 +46,7 @@ const Footer = () => {
       currencytext: "Change",
     },
   ];
+
   return (
     <div>
       <div className="grid  lg:grid-rows-none lg:grid-cols-2 gap-2 bg-black text-white p-4 pt-8 lg:p-6 ">
