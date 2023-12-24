@@ -7,14 +7,17 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
-
-const AccordionItem = ({title, children}) => {
+const AccordionItem = ({ title, children, className, borderStyle }) => {
   return (
-    <ChakraAccordionItem className="border-b py-2 border-gray-300">
+    <ChakraAccordionItem
+      className={`border-b py-2 border-gray-300 ${borderStyle}`}
+    >
       {({ isExpanded }) => (
         <>
           <h2>
-            <AccordionButton className="font-roboto-con font-semibold text-black text-[15px] py-2 uppercase hover:text-red-600">
+            <AccordionButton
+              className={`font-roboto-con font-semibold text-black text-[15px] py-2 uppercase hover:text-red-600 ${className}`}
+            >
               <Box as="span" flex="1" textAlign="left">
                 {title}
               </Box>
