@@ -1,3 +1,4 @@
+import { withChakraProvider } from '@/HOC/ChakraProviderHOC'
 import { Outlet } from 'react-router-dom'
 
 const AdminLayout = () => {
@@ -11,4 +12,4 @@ const AdminLayout = () => {
   )
 }
 
-export default AdminLayout
+export default withChakraProvider(AdminLayout);

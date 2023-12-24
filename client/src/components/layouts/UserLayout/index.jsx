@@ -1,3 +1,4 @@
+import { withChakraBaseProvider } from '@/HOC/ChakraProviderHOC'
 import { Footer, Header } from '@/components/user'
 import { Outlet } from 'react-router-dom'
 
@@ -13,4 +14,4 @@ const UserLayout = () => {
   )
 }
 
-export default UserLayout
+export default withChakraBaseProvider(UserLayout);
