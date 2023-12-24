@@ -78,7 +78,7 @@ function App() {
         rightBtnText={"Right"}
       />
  
-      <div>
+      <div className="flex">
         <ProductCard
           className=""
           link="exampla.com"
