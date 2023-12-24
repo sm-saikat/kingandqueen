@@ -1,34 +1,57 @@
-import React from "react";
-import { Link } from "@chakra-ui/react";
+import React, { useState } from "react";
+import SimpleSlider from "../SimpleSlider";
+import { NavLink } from "react-router-dom";
+import {Star, StarFill} from "react-bootstrap-icons"
 
-const ProductCard = ({ src, link, title, hoverSrc }) => {
+const ProductCard = ({ name, link, gallery, price, disscount, offerPrice, compact = false, className }) => {
+   const [hover, setHover] = useState(false);
+   const [isWishlist, setIsWishlist] = useState(false);
+
+  const hoverHandler = () => {
+    setHover(!hover);
+  };
+
+  const wishlistClickHandler = ()=>{
+    setIsWishlist(!isWishlist);
+  }
+
   return (
-    <div>
-      <Link
-        href={link}
-        className="text-center p-2 font-semibold m-auto cursor-pointer relative inline-block "
-      >
-        {/* Original image */}
-        <img
-          src={src}
-          alt={title}
-          className="m-auto mt-0 transition duration-300 ease-in-out transform hover:opacity-0 h-[800px] w-[600px] object-cover"
-        />
+    <div className={`productCard relative flex flex-col ${className}`}>
+      <NavLink to={link}>
+        <div className="cardTop" onMouseEnter={hoverHandler} onMouseLeave={hoverHandler}>
+          <div className={`layerOne ${hover ? 'hidden' : ''}`}>
+            <img src={gallery[0]} alt={name} />
+          </div>
+          <div className={`layerTwo w-full h-full ${hover ? '' : 'hidden'}`}>
+            {
+              compact ? (
+                <img src={gallery[1]} alt={name} />
+              ) : (
+                <SimpleSlider>
+              <img src={gallery[0]} alt={name} />
+              <img src={gallery[1]} alt={name} />
+            </SimpleSlider>
+              )
+            }
+          </div>
+        </div>
+        <div className="cardBottom text-center py-2">
+          <h1 className="text-sm font-bold">{name}</h1>
+          <div className="price text-sm font-bold">
+            <div className="flex gap-1.5 justify-center my-2">
+              <span className={`${disscount ? 'line-through' : ''}`}>${price}</span>
+              {disscount ? (<span>-{disscount}</span>) : ''}
+            </div>
+            {disscount ? (<span className="text-red-500">${offerPrice}</span>) : ''}
+          </div>
+        </div>
+      </NavLink>
 
-        {/* Hover image */}
-        <img
-          src={hoverSrc}
-          alt={title}
-          className="m-auto mt-[8px] opacity-0 transition duration-300 ease-in-out transform hover:opacity-100 absolute inset-0 h-[800px] w-[600px] object-cover"
-        />
-
-        {/* Title */}
-        <p className="text-center p-2 font-semibold m-auto cursor-pointer">
-          {title}
-        </p>
-      </Link>
+      <span className="absolute text-lg top-2 right-2 p-2 cursor-pointer hover:text-primary" onClick={wishlistClickHandler}>
+        {isWishlist ? <StarFill className="text-primary" /> : <Star />}
+      </span>
     </div>
-  );
+  )
 };
 
 export default ProductCard;

@@ -8,6 +8,11 @@ export default {
         "helvetica-neue": ["HelveticaNeue", "sans-serif"],
         "roboto-con": ["Roboto Condensed", "sans-serif"],
       },
+
+      colors: {
+        primary: '#C81D31',
+        secondary: '#000000'
+      }
     },
   },
   plugins: [],
