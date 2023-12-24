@@ -1,42 +1,42 @@
 import React from "react";
 import { Link } from "@chakra-ui/react";
 
-const BannerCards = (props) => {
+const BannerCards = ({leftImage, leftLink, leftAlt = '', leftText, rightImage, rightLink, rightAlt = '', rightText}) => {
   return (
     <div className="flex">
       {/* Left Banner Card */}
       <div className="flex flex-col justify-center w-[50%] h-screen">
-        <Link href={props.hrefLeft} className="h-full">
+        <Link href={leftLink} className="h-full">
           <img
-            src={props.srcLeft}
-            alt={props.altLeft}
+            src={leftImage}
+            alt={leftAlt}
             className="w-full h-full object-cover"
-            srcSet={props.altLeft}
+            srcSet={leftAlt}
           />
         </Link>
         <Link
-          href={props.hrefLeft}
+          href={leftLink}
           className="text-center p-2 font-semibold underline m-auto cursor-pointer hover:no-underline hover:text-gray-500"
         >
-          {props.leftTitle}
+          {leftText}
         </Link>
       </div>
 
       {/* Right Banner Card */}
       <div className="flex flex-col justify-center w-[50%] h-screen">
-        <Link href={props.hrefRight} className="h-full">
+        <Link href={rightLink} className="h-full">
           <img
             className="w-full h-full object-cover"
-            src={props.srcRight}
-            alt={props.altRight}
-            srcSet={props.altRight}
+            src={rightImage}
+            alt={rightAlt}
+            srcSet={rightAlt}
           />
         </Link>
         <Link
-          href={props.hrefRight}
+          href={rightLink}
           className="text-center p-2 font-semibold underline m-auto cursor-pointer hover:no-underline hover:text-gray-500"
         >
-          {props.rightTitle}
+          {rightText}
         </Link>
       </div>
     </div>

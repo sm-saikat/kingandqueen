@@ -1,3 +1,4 @@
+import { Link } from "@chakra-ui/react";
 import "./App.css";
 import {
   Button,
@@ -5,9 +6,9 @@ import {
   Notice,
   Accordion,
   AccordionItem,
-  BannarCards,
   ProductCard,
   Banner,
+  BannerCards,
 } from "@/components/ui";
 
 function App() {
@@ -27,11 +28,12 @@ function App() {
   return (
     <div className="mb-8">
       <Notice
-        noticeIcon="info"
-        className="bg-red-500"
-        noticeTitle="UP TO 50% OFF ON SELECTED STYLES. CHECK THE "
-        noticeDescription="HOLIDAY SHIPPING DEADLINES."
-        noticeLink="https://chakra-ui.com"
+        status="info"
+        noticeBodyClass={'bg-red-500'}
+        noticeTextClass={'text-white'}
+        noticeTitle={"UP TO 50% OFF ON SELECTED STYLES. CHECK THE"}
+        noticeLinkText="HOLIDAY SHIPPING DEADLINES."
+        link="https://chakra-ui.com"
       />
 
       <div className="w-1/4">
@@ -60,22 +62,15 @@ function App() {
           }
         </Accordion>
       </div>
-      <BannarCards
-        hrefLeft="/oneRout"
-        hrefRight="/twoRout"
-        leftTitle="Left"
-        srcLeft="./src/assets/img/1.webp"
-        srcRight="./src/assets/img/2.webp"
-        rightTitle="Right"
+      <BannerCards
+        leftLink="/oneRout"
+        rightLink="/twoRout"
+        leftText="Left"
+        leftImage="./src/assets/img/1.webp"
+        rightImage="./src/assets/img/2.webp"
+        rightText="Right"
       />
-      <BannarCards
-        hrefLeft="/oneRout"
-        hrefRight="/twoRout"
-        leftTitle="Left"
-        srcLeft="./src/assets/img/2.webp"
-        srcRight="./src/assets/img/1.webp"
-        rightTitle="Right"
-      />
+    
       <Banner
         link={"href/index/"}
         image={"./src/assets/img/3.webp"}
