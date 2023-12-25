@@ -198,7 +198,7 @@ const Footer = () => {
             <div className="mb-8 lg:hidden">
               <Accordion>
                 <AccordionItem
-                  className=" text-[#838383] text-base hover:text-white "
+                  className="text-base hover:text-white "
                   borderStyle="border-none"
                   title="Customer Service"
                 >
