@@ -3,9 +3,9 @@ import { Link } from "@chakra-ui/react";
 
 const BannerCards = ({leftImage, leftLink, leftAlt = '', leftText, rightImage, rightLink, rightAlt = '', rightText}) => {
   return (
-    <div className="flex">
+    <div className="flex flex-col sm:flex-row">
       {/* Left Banner Card */}
-      <div className="flex flex-col justify-center w-[50%] h-screen">
+      <div className="flex flex-col justify-center w-full sm:w-1/2 h-screen">
         <Link href={leftLink} className="h-full">
           <img
             src={leftImage}
@@ -23,7 +23,7 @@ const BannerCards = ({leftImage, leftLink, leftAlt = '', leftText, rightImage, r
       </div>
 
       {/* Right Banner Card */}
-      <div className="flex flex-col justify-center w-[50%] h-screen">
+      <div className="flex flex-col justify-center w-full sm:w-1/2 h-screen">
         <Link href={rightLink} className="h-full">
           <img
             className="w-full h-full object-cover"

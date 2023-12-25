@@ -26,14 +26,7 @@ const Home = () => {
 
   return (
     <div className="mb-8">
-      <Notice
-        status="info"
-        noticeBodyClass={'bg-red-500'}
-        noticeTextClass={'text-white'}
-        noticeTitle={"UP TO 50% OFF ON SELECTED STYLES. CHECK THE"}
-        noticeLinkText="HOLIDAY SHIPPING DEADLINES."
-        link="https://chakra-ui.com"
-      />
+
 
       <div className="w-1/4">
         <Button className="">Default</Button>
