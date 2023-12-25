@@ -333,23 +333,16 @@ const Footer = () => {
               <h3 className="font-helvetica uppercase text-[13px] my-2 tracking-wide">
                 Are you interested in:
               </h3>
-              <div className="flex flex-row justify-between">
-                <Checkbox
-                  size="lg"
-                  colorScheme="whiteAlpha"
-                  defaultChecked
-                  className="w-[50%]"
-                >
+              <div className="flex flex-row gap-10">
+                <label className="text-sm uppercase">
+                  <input type="checkbox"/>
                   Womenswear
-                </Checkbox>
-                <Checkbox
-                  size="lg"
-                  colorScheme="whiteAlpha"
-                  defaultChecked
-                  className="w-[50%]"
-                >
+                </label>
+
+                <label className="text-sm uppercase">
+                  <input type="checkbox" />
                   Menswear
-                </Checkbox>
+                </label>
               </div>
             </div>
 
@@ -369,10 +362,10 @@ const Footer = () => {
               at the bottom of any of our emails.
             </p>
 
-            <div className="w-full flex justify-center align-middle">
+            <div className="w-full">
               <Button
                 type="submit"
-                className="bg-white text-black hover:bg-black border-white hover:text-white m-0 my-4"
+                className="bg-white text-black hover:bg-black border-white hover:text-white mx-0 mt-4"
               >
                 Sing Up
               </Button>
