@@ -12,6 +12,10 @@ export default {
       colors: {
         primary: '#C81D31',
         secondary: '#000000'
+      },
+
+      screens: {
+        'xsm': '350px',
       }
     },
   },

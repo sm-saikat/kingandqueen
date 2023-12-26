@@ -1,4 +1,4 @@
-import { About, Home } from '@/components/pages/user';
+import { About, Home, Shop } from '@/components/pages/user';
 
 
 const userRoutes = [
@@ -6,10 +6,13 @@ const userRoutes = [
         path: '/',
         element: <Home />
     },
-
     {
         path: 'about',
         element: <About />
+    },
+    {
+        path: 'shop',
+        element: <Shop />
     }
 ]
 

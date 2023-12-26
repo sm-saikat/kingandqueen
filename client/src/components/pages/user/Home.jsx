@@ -1,50 +1,54 @@
 import {
-  Button,
-  SizeButton,
-  Notice,
-  Accordion,
-  AccordionItem,
   ProductCard,
   Banner,
   BannerCards,
+  ProductSlider,
 } from "@/components/user";
 
 
 const Home = () => {
+  const products = [
+    {
+      id: 1,
+      name: 'PA CITY LAMINATED BIKER',
+      price: '2263',
+      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
+    },
+    {
+      id: 1,
+      name: 'PA CITY LAMINATED BIKER',
+      price: '2263',
+      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
+    },
+    {
+      id: 1,
+      name: 'PA CITY LAMINATED BIKER',
+      price: '2263',
+      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
+    },
+    {
+      id: 1,
+      name: 'PA CITY LAMINATED BIKER',
+      price: '2263',
+      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
+    },
+    {
+      id: 1,
+      name: 'PA CITY LAMINATED BIKER',
+      price: '2263',
+      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
+    },
+    {
+      id: 1,
+      name: 'PA CITY LAMINATED BIKER',
+      price: '2263',
+      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
+    }
+  ]
+
   return (
-    <h1>Homepage</h1>
-  )
-}
-
-      <div className="mb-8">
-
-
-        <div className="w-1/4">
-          <Button className="">Default</Button>
-          <Button className=" hover:bg-black hover:text-white">Add Hover</Button>
-          <Button className=" bg-black text-white hover:bg-white hover:text-black ">
-            Customize button one
-          </Button>
-          <Button className=" border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-600 ">
-            Customize button two
-          </Button>
-        </div>
-        <div className="w-1/4">
-          <SizeButton>S</SizeButton>
-          <SizeButton>M</SizeButton>
-          <SizeButton>XL</SizeButton>
-          <SizeButton>XXL</SizeButton>
-          <SizeButton>XXXL</SizeButton>
-        </div>
-        <div className="w-1/4">
-          <Accordion>
-            {
-              accordionData.map((item, index) => {
-                return <AccordionItem key={index} title={item.title}>{item.description}</AccordionItem>
-              })
-            }
-          </Accordion>
-        </div>
+    <>
+      <section>
         <BannerCards
           leftLink="/oneRout"
           rightLink="/twoRout"
@@ -53,44 +57,29 @@ const Home = () => {
           rightImage="./src/assets/img/2.webp"
           rightText="Right"
         />
+      </section>
 
+      <section>
         <Banner
           link={"href/index/"}
           image={"./src/assets/img/3.webp"}
           leftBtnText={"Left"}
           rightBtnText={"Right"}
         />
+      </section>
 
-        <div className="flex">
-          <ProductCard
-            name="MONOGRAM LEATHER TRACK PANTS"
-            gallery={['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']}
-            price={1872.86}
-            className={'w-1/3'}
-          />
-
-          <ProductCard
-            name="MONOGRAM LEATHER TRACK PANTS"
-            gallery={['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']}
-            price={1872.86}
-            disscount={30}
-            offerPrice={1311}
-            className={'w-1/3'}
-          />
-
-          <ProductCard
-            name="MONOGRAM LEATHER TRACK PANTS"
-            gallery={['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']}
-            price={1872.86}
-            disscount={30}
-            offerPrice={1311}
-            className={'w-1/3'}
-            compact
-          />
-        </div>
-
-      </>
-      );
+      <section className="py-14">
+        <ProductSlider>
+          {
+            products.map(product => {
+              return <ProductCard className={'px-2 m-auto'} compact key={product.id} name={product.name} price={product.price} gallery={product.gallery} />
+            })
+          }
+        </ProductSlider>
+      </section>
+    </>
+  )
 }
 
-      export default Home
+
+export default Home;

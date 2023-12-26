@@ -6,30 +6,18 @@ import {
   AlertDescription,
 } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/react";
-const Notice = ({status = 'info', noticeTitle, noticeLinkText = '', link = '#', noticeBodyClass, noticeTextClass}) => {
+const Notice = ({ status = 'info', noticeBodyClass, noticeTextClass, children }) => {
   return (
     <>
       <Alert
         status={status}
-        className={`p-4 py-3 flex align-middle justify-center ${noticeBodyClass}`}
+        className={`p-4 py-2 flex items-center justify-center ${noticeBodyClass}`}
       >
-        <AlertIcon className={`text-white w-4 h-4 mr-2 ${status} ${noticeTextClass}`} />
         <AlertTitle
-          className={`pt-1 text-[12.5px] font-medium text-black mr-1.5`}
+          className={`pt-1 text-[12.5px] text-black mr-1.5 ${noticeTextClass}`}
         >
-          <p className={`font-helvetica-neue ${noticeTextClass}`}>{noticeTitle}</p>
+          {children}
         </AlertTitle>
-        <AlertDescription
-          className={`pt-1 text-[12.5px] font-medium text-black font-helvetica-neue ${noticeTextClass}`}
-        >
-          <Link
-            className={`underline hover:text-gray-500 hover:no-underline`}
-            href={link}
-            isExternal
-          >
-            <p className="font-helvetica-neue">{noticeLinkText}</p>
-          </Link>
-        </AlertDescription>
       </Alert>
     </>
   );

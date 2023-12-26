@@ -26,3 +26,90 @@
   box-sizing: border-box;
   font-family: "Roboto Condensed", sans-serif;
 }
+
+
+/* Globals */
+.pageContent{
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+@media(max-width: 500px){
+  .pageContent{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media(max-width: 300px){
+  .pageContent{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* Header */
+
+/* Position and sizing of burger button */
+header .bm-burger-button {
+  position: relative;
+  width: 36px;
+  height: 30px;
+}
+
+header .bm-burger-bars {
+  background: #373a47;
+}
+
+header .bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+header .bm-cross {
+  background: #bdc3c7;
+}
+
+header .bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+  left: 0;
+}
+
+header .bm-menu {
+  background: white;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+header .bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+header .bm-item-list {
+  padding: 0.8em;
+}
+
+/* Individual item */
+header .bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+header .bm-overlay {
+  background: transparent !important;
+}
+
+
+
+/* Product Slider */
+
+.slick-prev {
+  left: 50px;
+  z-index: 1;
+}
+
+.slick-next {
+  right: 50px;
+}

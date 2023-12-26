@@ -20,12 +20,12 @@ const ProductCard = ({ name, link, gallery, price, disscount, offerPrice, compac
       <NavLink to={link}>
         <div className="cardTop" onMouseEnter={hoverHandler} onMouseLeave={hoverHandler}>
           <div className={`layerOne ${hover ? 'hidden' : ''}`}>
-            <img src={gallery[0]} alt={name} />
+            <img className="w-full" src={gallery[0]} alt={name} />
           </div>
           <div className={`layerTwo w-full h-full ${hover ? '' : 'hidden'}`}>
             {
               compact ? (
-                <img src={gallery[1]} alt={name} />
+                <img className="w-full" src={gallery[1]} alt={name} />
               ) : (
                 <SimpleSlider>
               <img src={gallery[0]} alt={name} />
