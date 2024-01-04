@@ -3,7 +3,7 @@ import {
   Banner,
   BannerCards,
   ProductSlider,
-} from "@/components/user";
+} from "@/components/ui";
 import { useEffect } from "react";
 
 

@@ -1,4 +1,4 @@
-import { Notice } from "@/components/user"
+import { Notice } from "@/components/ui"
 import { NavLink } from "react-router-dom"
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
 import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons"

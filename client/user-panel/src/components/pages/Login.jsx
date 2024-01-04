@@ -1,6 +1,6 @@
-import { Button, Footer, Header } from "@/components/user"
-import Input from "@/components/user/FormControls/Input"
-import { useEffect, useState } from "react"
+import { Button} from "@/components/ui"
+import Input from "@/components/ui/FormControls/Input"
+import {useState } from "react"
 import { NavLink } from "react-router-dom"
 
 

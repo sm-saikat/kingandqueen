@@ -1,28 +1,20 @@
 import {createBrowserRouter} from 'react-router-dom'
-import UserLayout from '@/components/layouts/UserLayout';
-import userRoutes from './userRouter';
+import MainLayout from '@/components/layouts/MainLayout';
+import mainRoutes from './mainRoutes';
 import Error from '@/components/pages/errorPages/Error';
-import AdminLayout from '@/components/layouts/AdminLayout';
-import adminRoutes from './adminRouter';
-import { Login } from '@/components/pages/user';
-import Layout from '@/components/layouts/Layout';
+import CommonLayout from '@/components/layouts/CommonLayout';
 
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout />,
+        element: <CommonLayout />,
+        errorElement: <Error />,
         children: [
             {
                 path: '/',
-                element: <UserLayout />,
-                children: userRoutes,
-                errorElement: <Error />
-            },
-            {
-                path: '/admin',
-                element: <AdminLayout />,
-                children: adminRoutes
+                element: <MainLayout />,
+                children: mainRoutes,
             }
         ]
     }

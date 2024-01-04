@@ -2,13 +2,14 @@ import React from "react";
 import { Stack, Link } from "@chakra-ui/react";
 import { Checkbox } from "@chakra-ui/checkbox";
 
-import Accordion from "@/components/user/Accordion";
-import AccordionItem from "@/components/user/AccordionItem";
-import Button from "@/components/user/Button";
+import Accordion from "@/components/ui/Accordion";
+import AccordionItem from "@/components/ui/AccordionItem";
+import Button from "@/components/ui/Button";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   const customerServiceMenus = [
-    { id: 1, href: "/contact", text: "Contact Us" },
+    { id: 1, href: "/contact-us", text: "Contact Us" },
     { id: 2, href: "/track-order", text: "Track Your Order" },
     { id: 3, href: "/return-order", text: "Return Your Order" },
     { id: 4, href: "/shipping-returns", text: "Shipping & Returns" },
@@ -63,9 +64,9 @@ const Footer = () => {
                   <ul className="uppercase font-semibold">
                     {customerServiceMenus.map((menu) => (
                       <li key={'customer_service_01_' + menu.id} className="py-3 text-[15px]">
-                        <Link className="hover:text-[#535353]" href={menu.href}>
+                        <NavLink className="hover:text-[#535353]" to={'customer-service' + menu.href}>
                           {menu.text}
-                        </Link>
+                        </NavLink>
                       </li>
                     ))}
                   </ul>
@@ -206,12 +207,12 @@ const Footer = () => {
                     <ul className="uppercase font-semibold">
                       {customerServiceMenus.map((menu) => (
                         <li key={'customer_service_02_' + menu.id} className="py-3 text-[15px]">
-                          <Link
+                          <NavLink
                             className="hover:text-[#535353]"
-                            href={menu.href}
+                            to={'customer-service' + menu.href}
                           >
                             {menu.text}
-                          </Link>
+                          </NavLink>
                         </li>
                       ))}
                     </ul>

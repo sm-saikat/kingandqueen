@@ -1,4 +1,4 @@
-import { Accordion, AccordionItem, ProductCard, SmallButton } from "@/components/user"
+import { Accordion, AccordionItem, ProductCard, SmallButton } from "@/components/ui"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
 
 const Shop = () => {

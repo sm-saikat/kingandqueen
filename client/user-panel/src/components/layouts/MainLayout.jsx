@@ -1,5 +1,5 @@
 import { withChakraBaseProvider } from '@/HOC/ChakraProviderHOC'
-import { Footer, Header } from '@/components/user'
+import { Footer, Header } from '@/components/ui'
 import { Outlet } from 'react-router-dom'
 
 const UserLayout = () => {
