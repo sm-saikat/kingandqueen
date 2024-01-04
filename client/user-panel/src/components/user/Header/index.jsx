@@ -10,26 +10,32 @@ const Header = () => {
 
   const mainMenu = [
     {
+      id: 1,
       name: 'Sale',
       link: '/sale'
     },
     {
+      id: 2,
       name: 'New In',
       link: '#'
     },
     {
+      id: 3,
       name: 'Man',
-      link: '#'
+      link: '/shop'
     },
     {
+      id: 4,
       name: 'Woman',
       link: '#'
     },
     {
+      id: 5,
       name: 'Eyewear',
       link: '#'
     },
     {
+      id: 6,
       name: 'Kids',
       link: '#'
     }
@@ -70,7 +76,7 @@ const Header = () => {
             {
               mainMenu.map((item) => {
                 return (
-                  <NavLink className={`uppercase text-base font-semibold hover:text-primary`} to={item.links}>{item.name}</NavLink>
+                  <NavLink key={'burger_' + item.id} className={`uppercase text-base font-semibold hover:text-primary`} to={item.link}>{item.name}</NavLink>
                 )
               })
             }
@@ -82,7 +88,7 @@ const Header = () => {
           {
             mainMenu.map((item) => {
               return (
-                <NavLink className={`uppercase text-base font-semibold hover:text-primary`} to={item.links}>{item.name}</NavLink>
+                <NavLink key={'header_' + item.id} className={`uppercase text-base font-semibold hover:text-primary`} to={item.link}>{item.name}</NavLink>
               )
             })
           }
@@ -108,7 +114,7 @@ const Header = () => {
             </MenuList>
           </Menu>
 
-          <NavLink className={`uppercase text-base font-semibold hover:text-primary`} >Login</NavLink>
+          <NavLink to={"/login"} className={`uppercase text-base font-semibold hover:text-primary`} >Login</NavLink>
 
           <NavLink className={`uppercase text-base font-semibold hover:text-primary`}>Wishlist (<span>0</span>)</NavLink>
 

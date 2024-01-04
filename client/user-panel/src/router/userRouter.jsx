@@ -1,4 +1,4 @@
-import { About, Home, Shop } from '@/components/pages/user';
+import { About, CustomerService, Home, Login, Shop } from '@/components/pages/user';
 
 
 const userRoutes = [
@@ -13,6 +13,14 @@ const userRoutes = [
     {
         path: 'shop',
         element: <Shop />
+    },
+    {
+        path: 'login',
+        element: <Login />
+    },
+    {
+        path: 'customer-service',
+        element: <CustomerService />
     }
 ]
 

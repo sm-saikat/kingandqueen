@@ -105,11 +105,23 @@ header .bm-overlay {
 
 /* Product Slider */
 
-.slick-prev {
+.productSlider .slick-prev {
   left: 50px;
   z-index: 1;
 }
-
-.slick-next {
-  right: 50px;
+.productSlider .slick-next {
+  right: 55px;
 }
+.productSlider .slick-prev::before{
+  content: '<';
+  color: #C81D31;
+  font-size: 50px;
+  font-weight: 600;
+}
+.productSlider .slick-next::before{
+  content: '>';
+  color: #C81D31;
+  font-size: 50px;
+  font-weight: 600;
+}
+

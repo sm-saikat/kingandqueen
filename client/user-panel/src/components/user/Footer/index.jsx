@@ -26,9 +26,9 @@ const Footer = () => {
     { id: 2, href: "/store-locator", text: "Store Locator" },
   ];
   const socialMenus = [
-    { id: 2, href: "/instagram", text: "Inatagram" },
+    { id: 1, href: "/instagram", text: "Inatagram" },
     { id: 2, href: "/weibo", text: "Weibo" },
-    { id: 2, href: "/wechat", text: "Wechat" },
+    { id: 3, href: "/wechat", text: "Wechat" },
   ];
   const countryMenus = [
     {
@@ -39,7 +39,7 @@ const Footer = () => {
       currencytext: "Change",
     },
     {
-      id: 1,
+      id: 2,
       countryhref: "/india",
       countrytext: "india",
       currencyhref: "/change",
@@ -62,7 +62,7 @@ const Footer = () => {
                 <div>
                   <ul className="uppercase font-semibold">
                     {customerServiceMenus.map((menu) => (
-                      <li key={menu.id} className="py-3 text-[15px]">
+                      <li key={'customer_service_01_' + menu.id} className="py-3 text-[15px]">
                         <Link className="hover:text-[#535353]" href={menu.href}>
                           {menu.text}
                         </Link>
@@ -81,7 +81,7 @@ const Footer = () => {
                     </h3>
                     <ul className="uppercase font-semibold">
                       {aboutMenus.map((menu) => (
-                        <li key={menu.id} className="py-3 text-[15px]">
+                        <li key={'about_menu_01_' + menu.id} className="py-3 text-[15px]">
                           <Link
                             className="hover:text-[#535353]"
                             href={menu.href}
@@ -100,7 +100,7 @@ const Footer = () => {
                         </h3>
                         <ul className="uppercase font-semibold">
                           {countryMenus.map((menu) => (
-                            <li key={menu.id} className="py-3 text-[15px]">
+                            <li key={'country_menu_01_' + menu.id} className="py-3 text-[15px]">
                               <Link
                                 className="mr-2 hover:text-[#535353]"
                                 href={menu.countryhref}
@@ -125,7 +125,7 @@ const Footer = () => {
                         <div>
                           <ul className="uppercase font-semibold">
                             {socialMenus.map((menu) => (
-                              <li key={menu.id} className="py-3 text-[15px]">
+                              <li key={'social_menu_01_' + menu.id} className="py-3 text-[15px]">
                                 <Link
                                   className="mr-2 hover:text-[#535353]"
                                   href={menu.href}
@@ -153,7 +153,7 @@ const Footer = () => {
                     <div>
                       <ul className="uppercase font-semibold">
                         {countryMenus.map((menu) => (
-                          <li key={menu.id} className="py-3 text-[15px]">
+                          <li key={'country_menu_02_' + menu.id} className="py-3 text-[15px]">
                             <Link
                               className="mr-2 hover:text-[#535353]"
                               href={menu.countryhref}
@@ -179,7 +179,7 @@ const Footer = () => {
                     <div>
                       <ul className="uppercase font-semibold">
                         {socialMenus.map((menu) => (
-                          <li key={menu.id} className="py-3 text-[15px]">
+                          <li key={'social_menu_02_' + menu.id} className="py-3 text-[15px]">
                             <Link
                               className="mr-2 hover:text-[#535353]"
                               href={menu.href}
@@ -205,7 +205,7 @@ const Footer = () => {
                   <div>
                     <ul className="uppercase font-semibold">
                       {customerServiceMenus.map((menu) => (
-                        <li key={menu.id} className="py-3 text-[15px]">
+                        <li key={'customer_service_02_' + menu.id} className="py-3 text-[15px]">
                           <Link
                             className="hover:text-[#535353]"
                             href={menu.href}
@@ -227,7 +227,7 @@ const Footer = () => {
                   <div>
                     <ul className="uppercase font-semibold">
                       {aboutMenus.map((menu) => (
-                        <li key={menu.id} className="py-3 text-[15px]">
+                        <li key={'about_menu_02_' + menu.id} className="py-3 text-[15px]">
                           <Link
                             className="hover:text-[#535353]"
                             href={menu.href}
@@ -249,7 +249,7 @@ const Footer = () => {
                   <div>
                     <ul className="uppercase font-semibold">
                       {socialMenus.map((menu) => (
-                        <li key={menu.id} className="py-3 text-[15px]">
+                        <li key={'social_menu_03' + menu.id} className="py-3 text-[15px]">
                           <Link
                             className="mr-2 hover:text-[#535353]"
                             href={menu.href}
@@ -271,7 +271,7 @@ const Footer = () => {
                   <div>
                     <ul className="uppercase font-semibold">
                       {countryMenus.map((menu) => (
-                        <li key={menu.id} className="py-3 text-[15px]">
+                        <li key={'country_menu_03_' + menu.id} className="py-3 text-[15px]">
                           <Link
                             className="mr-2 hover:text-[#535353]"
                             href={menu.countryhref}
@@ -322,8 +322,8 @@ const Footer = () => {
             </label>
             <input
               type="email"
-              name="email"
-              id="email"
+              name="subscribeEmail"
+              id="subscribeEmail"
               className="w-full border bg-black py-3 px-2 focus:outline-none font-helvetica text-[13px] tracking-wider"
             />
             <p className="text-xs font-semibold my-3 text-red-600 font-helvetica">

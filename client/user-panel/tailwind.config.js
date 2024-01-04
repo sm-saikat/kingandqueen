@@ -11,7 +11,8 @@ export default {
 
       colors: {
         primary: '#C81D31',
-        secondary: '#000000'
+        secondary: '#000000',
+        bgGray: 'rgb(241, 241, 241)'
       },
 
       screens: {

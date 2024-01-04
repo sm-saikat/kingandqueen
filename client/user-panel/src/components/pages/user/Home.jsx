@@ -4,6 +4,7 @@ import {
   BannerCards,
   ProductSlider,
 } from "@/components/user";
+import { useEffect } from "react";
 
 
 const Home = () => {
@@ -45,6 +46,7 @@ const Home = () => {
       gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
     }
   ]
+
 
   return (
     <>

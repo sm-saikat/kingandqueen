@@ -17,7 +17,7 @@ const ProductSlider = ({ children }) => {
               breakpoint: 1024,
               settings: {
                 slidesToShow: 2,
-                slidesToScroll: 3,
+                slidesToScroll: 1,
                 infinite: true,
                 dots: true
               }
@@ -32,8 +32,16 @@ const ProductSlider = ({ children }) => {
           ]
     };
 
+    const NextArrowButton = ({currentSlide, slideCount, ...props})=>{
+      return <span {...props}><ChevronLeft color="red" fontSize={30} /></span>
+    }
+
+    const PrevArrowButton = ({currentSlide, slideCount, ...props})=>{
+      return <span {...props}><ChevronRight color="red" fontSize={30}/></span>
+    }
+
     return (
-        <Slider className="productSlider" prevArrow={<ChevronLeft color="red" size={30} fontSize={30} />} {...sliderSettings} nextArrow={<ChevronRight color="red"/>} accessibility={true} arrows={true}>
+        <Slider {...sliderSettings} className="productSlider" accessibility={true} arrows={true}>
             {children}
         </Slider>
     )
