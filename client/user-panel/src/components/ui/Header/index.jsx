@@ -43,13 +43,13 @@ const Header = () => {
 
   const [stickyClass, setStickyClass] = useState('relative');
 
-  useEffect(() => {
-    window.addEventListener('scroll', stickNavbar);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', stickNavbar);
 
-    return () => {
-      window.removeEventListener('scroll', stickNavbar);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', stickNavbar);
+  //   };
+  // }, []);
 
   const stickNavbar = () => {
     if (window !== undefined) {

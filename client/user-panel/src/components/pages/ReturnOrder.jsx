@@ -1,12 +1,13 @@
 import Input from "../ui/FormControls/Input";
 import { Button } from "../ui";
+import { NavLink } from "react-router-dom";
 
 
-const TrackOrder = ()=>{
+const ReturnOrder = ()=>{
     return (
         <div>
-            <h1 className="uppercase font-bold text-2xl my-6">Track Your Order</h1>
-            <p className="uppercase">TO TRACK YOUR ONLINE ORDER, PLEASE ENTER THE FOLLOWING DETAILS. YOU CAN TRACK YOUR REGULAR OR GUEST ORDER.</p>
+            <h1 className="uppercase font-bold text-2xl my-6">Return Your Order</h1>
+            <p className="uppercase">PLEASE ENTER THE FOLLOWING INFORMATION IF YOU HAVE PLACED AN ORDER AS GUEST TO INITIATE A RETURN. IF YOU ARE ALREADY A REGISTERED CLIENT, <NavLink className={'underline'} to={'/login'}>PLEASE SIGN IN TO YOUR ACCOUNT</NavLink>.</p>
 
             <form action="" className="my-4">
                 <div>
@@ -24,4 +25,4 @@ const TrackOrder = ()=>{
 }
 
 
-export default TrackOrder;
+export default ReturnOrder;
