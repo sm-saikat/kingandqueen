@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { PageTitle } from "../ui";
 
 
 const CustomerService = () => {
@@ -36,9 +37,7 @@ const CustomerService = () => {
 
     return (
         <>
-            <div className="customerServiceHeader flex justify-between py-2 pageContent border-b">
-                <h1 className="uppercase font-semibold text-lg">Customer Service</h1>
-            </div>
+            <PageTitle>Customer Service</PageTitle>
             <div className="pageContent flex justify-between py-10">
                 <div className="w-1/3">
                     <nav className="flex flex-col gap-4 px-2">

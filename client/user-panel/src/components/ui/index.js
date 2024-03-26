@@ -10,3 +10,5 @@ export { default as BannerCards } from "./BannerCards";
 export { default as Banner } from "./Banner";
 export { default as ProductCard } from "./ProductCard";
 export { default as ProductSlider } from "./ProductSlider"
+export {default as PageTitle} from "./PageTitle"
+export {default as Pagination} from "./Pagination";

@@ -15,7 +15,7 @@ const Input = ({ type, value, label, placeholder = "", name, id, required, inval
 
     return (
         <div className="flex flex-col w-full">
-            <label htmlFor={id} className="my-2">{label}</label>
+            <label htmlFor={id} className="mb-2 uppercase">{label}</label>
             <div className="relative">
                 <input {...props} className={`py-2 px-2 bg-bgGray outline-none w-full ${invalid ? 'border-l-2 border-red-500' : ''}`} type={inputType} name={name} id={id} placeholder={placeholder} required={required ? true : false} value={value} />
 

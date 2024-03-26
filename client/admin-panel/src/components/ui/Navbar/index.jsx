@@ -1,10 +1,24 @@
-import {Breadcrumb, BreadcrumbItem, BreadcrumbLink} from '@chakra-ui/react'
-import {PersonFill, GearFill, BellFill} from 'react-bootstrap-icons'
+import useAuth from '@/components/hooks/useAuth';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { Button, Dropdown } from 'antd';
+import { PersonFill, GearFill, BellFill } from 'react-bootstrap-icons'
 import { useLocation } from 'react-router-dom'
 
 
 const Navbar = () => {
     const location = useLocation();
+    const auth = useAuth();
+    console.log(auth.admin)
+    const settingsMenu = [
+        {
+            key: '1',
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+                    1st menu item
+                </a>
+            ),
+        },
+    ]
 
     return (
         <div className='flex justify-between items-center w-full px-4 py-6'>
@@ -22,9 +36,7 @@ const Navbar = () => {
 
             {/* Right Side */}
             <div className='flex gap-2 items-center mr-8'>
-                <div className='text-lg p-2 cursor-pointer opacity-70'><PersonFill /></div>
-                <div className='text-lg p-2 cursor-pointer opacity-70'><BellFill /></div>
-                <div className='text-lg p-2 cursor-pointer opacity-70'><GearFill /></div>
+                <p><strong>Welcome, </strong>{auth.admin.data.email}</p>
             </div>
         </div>
     )

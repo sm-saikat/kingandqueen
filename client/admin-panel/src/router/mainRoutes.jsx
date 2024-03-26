@@ -1,4 +1,5 @@
-import { Dashboard, Products } from "../components/pages";
+import Login from "@/components/pages/Login";
+import { Category, Customers, Dashboard, Orders, Products } from "../components/pages";
 
 
 const mainRoutes = [
@@ -9,6 +10,18 @@ const mainRoutes = [
     {
         path: '/products',
         element: <Products />
+    },
+    {
+        path: '/category',
+        element: <Category />
+    },
+    {
+        path: '/customers',
+        element: <Customers />
+    },
+    {
+        path: '/orders',
+        element: <Orders />
     }
 ]
 

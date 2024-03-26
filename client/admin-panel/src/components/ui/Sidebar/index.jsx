@@ -1,5 +1,8 @@
+import useAuth from '@/components/hooks/useAuth';
+import { Button } from 'antd';
 import { useEffect, useState } from 'react'
 import {HouseFill, CartFill, PersonFill, ColumnsGap, BoxFill} from 'react-bootstrap-icons'
+import toast from 'react-hot-toast';
 import { NavLink, useLocation } from 'react-router-dom';
 
 const Sidebar = ()=>{
@@ -26,12 +29,6 @@ const Sidebar = ()=>{
             icon: <ColumnsGap />
         },
         {
-            id: 4,
-            name: 'Customers',
-            path: '/customers',
-            icon: <PersonFill />
-        },
-        {
             id: 5,
             name: 'Orders',
             path: '/orders',
@@ -44,6 +41,22 @@ const Sidebar = ()=>{
     useEffect(()=>{
         setActiveMenu(location.pathname);
     }, [location])
+
+    const auth = useAuth();
+
+    const handleLogout = async () => {
+        const response = await fetch(import.meta.env.VITE_API_BASE_URL + '/admin/logout', {
+            method: 'POST',
+            credentials: 'include'
+        })
+
+        if(response.ok){
+            auth.logout();
+            return;
+        }
+
+        toast.error('Failed to logout');
+    }
 
     return (
         <div>
@@ -62,6 +75,8 @@ const Sidebar = ()=>{
                         )
                     })
                 }
+
+                <Button onClick={handleLogout} className='mt-10'>Logout</Button>
             </div>
         </div>
     )

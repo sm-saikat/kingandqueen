@@ -1,47 +1,203 @@
-import { Accordion, AccordionItem, ProductCard, SmallButton } from "@/components/ui"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
+import { Accordion, AccordionItem, Pagination, ProductCard, SmallButton } from "@/components/ui"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, filter } from "@chakra-ui/react"
+import { useEffect, useState } from "react"
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import RecursiveCheckbox from "../ui/FormControls/RecursiveCheckbox";
+import ReactPaginate from "react-paginate";
 
 const Shop = () => {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const products = [
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
+  const [catCheckedValues, setCatCheckedValues] = useState([]);
+  const [sizeCheckedValues, setSizeCheckedValues] = useState([]);
+  const [colorCheckedValues, setColorCheckedValues] = useState([]);
+  const [filters, setFilters] = useState({});
+  const [pagination, setPagination] = useState({});
+
+  const location = useLocation();
+  const params = useParams();
+
+  const fetchProducts = async (query = "") => {
+    const response = await fetch(import.meta.env.VITE_API_URL + '/admin/products' + query);
+    const result = await response.json();
+
+    if (!response.ok) {
+      toast.error(result.message);
+      return;
     }
-  ]
 
+    console.log(result)
+    setProducts(result.data)
+    setPagination(result.pagination)
+  }
+
+  const fetchCategories = async () => {
+    const response = await fetch(import.meta.env.VITE_API_URL + '/admin/categories');
+    const result = await response.json();
+
+    if (!response.ok) {
+      toast.error(result.message);
+      return;
+    }
+
+    setCategories(result.data)
+  }
+
+  useEffect(() => {
+    fetchProducts();
+    fetchCategories();
+
+    // Set filters from url
+    const urlSearchParams = new URLSearchParams(location.search);
+    const sort = urlSearchParams.get('sort');
+    const order = urlSearchParams.get('order');
+    const categories = params.category ? params.category : urlSearchParams.get('categories');
+
+    if (sort) {
+      setFilters(prev => {
+        return {
+          ...prev,
+          sort,
+          order,
+        }
+      })
+    }
+
+    if (categories) {
+      setCatCheckedValues(categories.split('|'));
+    }
+
+    // Make breadcrumb link
+
+  }, [])
+
+  useEffect(() => {
+    const filterKeys = Object.keys(filters)
+    console.log('Filters', filters)
+    if (filterKeys.length == 0) {
+      setSearchParams({});
+      return;
+    }
+
+    filterKeys.forEach(key => {
+      if (filters[key] !== '') {
+        searchParams.set([key], filters[key]);
+      } else {
+        searchParams.delete([key]);
+      }
+    })
+    setSearchParams(searchParams);
+  }, [filters])
+
+  useEffect(() => {
+    const query = searchParams.toString() ? '?' + searchParams.toString() : '';
+    fetchProducts(query);
+  }, [searchParams])
+
+  const handleSortChange = (e) => {
+    let sort = e.target.value;
+    let order = 'desc';
+
+    if (sort.includes('price')) {
+      order = sort.split("_")[1];
+      sort = 'price';
+    }
+
+    setFilters(prev => {
+      return {
+        ...prev,
+        sort,
+        order
+      }
+    })
+  }
+
+
+  const handleCatChange = (event) => {
+    const checkbox = event.target;
+    if (checkbox.checked) {
+      setCatCheckedValues(prev => {
+        return [...prev, checkbox.value];
+      });
+    }
+    else if (!checkbox.checked) {
+      console.log('Unchecked')
+      setCatCheckedValues(prev => {
+        return prev.filter(item => item !== checkbox.value);
+      });
+    }
+  }
+
+  useEffect(() => {
+    setFilters(prev => {
+      return {
+        ...prev,
+        categories: catCheckedValues.join('|')
+      }
+    })
+  }, [catCheckedValues])
+
+
+  const handleSizeChange = (e) => {
+    const checkbox = e.target;
+    if (checkbox.checked) {
+      setSizeCheckedValues(prev => {
+        return [...prev, checkbox.value];
+      });
+    }
+    else if (!checkbox.checked) {
+      setSizeCheckedValues(prev => {
+        return prev.filter(item => item !== checkbox.value);
+      });
+    }
+  }
+
+  useEffect(() => {
+    setFilters(prev => {
+      return {
+        ...prev,
+        sizes: sizeCheckedValues.join('|')
+      }
+    })
+  }, [sizeCheckedValues]);
+
+
+  const handleColorChange = (e) => {
+    const checkbox = e.target;
+    if (checkbox.checked) {
+      setColorCheckedValues(prev => {
+        return [...prev, checkbox.value];
+      });
+    }
+    else if (!checkbox.checked) {
+      setColorCheckedValues(prev => {
+        return prev.filter(item => item !== checkbox.value);
+      });
+    }
+  }
+
+  useEffect(() => {
+    setFilters(prev => {
+      return {
+        ...prev,
+        colors: colorCheckedValues.join('|')
+      }
+    })
+  }, [colorCheckedValues])
+
+
+  const handlePaginationChange = (event) => {
+    const selectedPage = event.selected + 1;
+    setFilters(prev => {
+      return {
+        ...prev,
+        page: selectedPage
+      }
+    })
+  }
 
   return (
     <>
@@ -61,7 +217,7 @@ const Shop = () => {
 
         <div className="title font-bold">Man</div>
 
-        <div className="quantity text-sm">16 Products</div>
+        <div className="quantity text-sm">{ pagination.total?? 0 } Products</div>
       </div>
 
       {/* Main Section */}
@@ -69,13 +225,76 @@ const Shop = () => {
         <div className="sidebar max-md:hidden w-1/4 py-4 pr-8">
           <Accordion>
             <AccordionItem title={"Sory By"}>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam tempore facilis iste eligendi error debitis. Sequi consectetur, nobis eos non sed quidem velit? Doloremque ex aut sit assumenda, numquam adipisci?
+              <div className="flex flex-col gap-2 uppercase">
+                <div>
+                  <input onChange={handleSortChange} type="radio" name="sort" id="latest" value='createdAt' className="mr-2" />
+                  <label htmlFor="latest">Latest</label>
+                </div>
+                <div>
+                  <input onChange={handleSortChange} type="radio" name="sort" id="price_asc" value="price_asc" className="mr-2" />
+                  <label htmlFor="price_asc">Price (Low to High)</label>
+                </div>
+                <div>
+                  <input onChange={handleSortChange} type="radio" name="sort" id="price_desc" value="price_desc" className="mr-2" />
+                  <label htmlFor="price_desc">Price (High to Low)</label>
+                </div>
+              </div>
             </AccordionItem>
             <AccordionItem title={"Categories"}>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam tempore facilis iste eligendi error debitis. Sequi consectetur, nobis eos non sed quidem velit? Doloremque ex aut sit assumenda, numquam adipisci?
+              <div>
+                <RecursiveCheckbox data={categories} catCheckedValues={catCheckedValues} onChangeHandler={handleCatChange} />
+              </div>
             </AccordionItem>
-            <AccordionItem title={"Collections"}>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam tempore facilis iste eligendi error debitis. Sequi consectetur, nobis eos non sed quidem velit? Doloremque ex aut sit assumenda, numquam adipisci?
+            <AccordionItem title={"Sizes"}>
+              <div>
+                <input onChange={handleSizeChange} type="checkbox" name="size" id="xs" value="xs" className="mr-2" />
+                <label htmlFor="xs">XS</label><br />
+
+                <input onChange={handleSizeChange} type="checkbox" name="size" id="sm" value="sm" className="mr-2" />
+                <label htmlFor="sm">SM</label><br />
+
+                <input onChange={handleSizeChange} type="checkbox" name="size" id="md" value="MD" className="mr-2" />
+                <label htmlFor="md">MD</label><br />
+
+                <input onChange={handleSizeChange} type="checkbox" name="size" id="lg" value="lg" className="mr-2" />
+                <label htmlFor="lg">LG</label><br />
+
+                <input onChange={handleSizeChange} type="checkbox" name="size" id="xl" value="xl" className="mr-2" />
+                <label htmlFor="xl">XL</label><br />
+
+                <input onChange={handleSizeChange} type="checkbox" name="size" id="xxl" value="xxl" className="mr-2" />
+                <label htmlFor="xxl">XXL</label><br />
+
+                <input onChange={handleSizeChange} type="checkbox" name="size" id="xxxl" value="xxxl" className="mr-2" />
+                <label htmlFor="xxxl">XXXL</label><br />
+              </div>
+            </AccordionItem>
+            <AccordionItem title={"Colors"}>
+              <div>
+                <input onChange={handleColorChange} type="checkbox" name="color" id="red" value="red" className="mr-2" />
+                <label htmlFor="red">Red</label><br />
+
+                <input onChange={handleColorChange} type="checkbox" name="color" id="blue" value="blue" className="mr-2" />
+                <label htmlFor="blue">Blue</label><br />
+
+                <input onChange={handleColorChange} type="checkbox" name="color" id="green" value="green" className="mr-2" />
+                <label htmlFor="green">Green</label><br />
+
+                <input onChange={handleColorChange} type="checkbox" name="color" id="yellow" value="yellow" className="mr-2" />
+                <label htmlFor="yellow">Yellow</label><br />
+
+                <input onChange={handleColorChange} type="checkbox" name="color" id="black" value="black" className="mr-2" />
+                <label htmlFor="black">Black</label><br />
+
+                <input onChange={handleColorChange} type="checkbox" name="color" id="white" value="white" className="mr-2" />
+                <label htmlFor="white">White</label><br />
+
+                <input onChange={handleColorChange} type="checkbox" name="color" id="grey" value="grey" className="mr-2" />
+                <label htmlFor="grey">Grey</label><br />
+
+                <input onChange={handleColorChange} type="checkbox" name="color" id="brown" value="brown" className="mr-2" />
+                <label htmlFor="brown">Brown</label><br />
+              </div>
             </AccordionItem>
           </Accordion>
         </div>
@@ -83,18 +302,34 @@ const Shop = () => {
         <div className="w-3/4 max-md:w-full flex flex-col items-center">
           <div className="products grid grid-cols-3 max-sm:grid-cols-2 max-xsm:grid-cols-1 gap-6">
             {
-              products.map(product => {
-                return <ProductCard className={""} name={product.name} price={product.price} gallery={product.gallery} compact />
-              })
+              products.length > 0 ? (
+                products.map(product => {
+                  return <ProductCard key={product._id} link={'/shopping/-' + product._id} id={product._id} title={product.title} price={product.price} disscount={product.discountPrice ? product.price - product.discountPrice : 0} offerPrice={product.discountPrice} gallery={product.images} sizes={product.sizes} colors={product.colors} />
+                })
+              ) : (
+                <div className="text-center w-full my-10">No products found</div>
+              )
             }
           </div>
-          <div className="pagination py-6">
-            <SmallButton fill>1</SmallButton>
-            <SmallButton>2</SmallButton>
-            <SmallButton>3</SmallButton>
-            ...
-            <SmallButton>10</SmallButton>
-          </div>
+          {
+            products.length > 0 && (
+              <div className="pagination py-6">
+                <ReactPaginate
+                  breakLabel={'...'}
+                  nextLabel={'Next'}
+                  previousLabel={'Previous'}
+                  pageCount={Math.ceil(pagination.total / pagination.pageSize)}
+                  forcePage={pagination.current - 1}
+                  onPageChange={handlePaginationChange}
+                  marginPagesDisplayed={1}
+                  pageLinkClassName="px-4 py-3 border border-gray-300 rounded-sm hover:bg-gray-300"
+                  activeLinkClassName="bg-gray-300"
+                  containerClassName="flex justify-center gap-2"
+                  disabledLinkClassName="opacity-50 cursor-not-allowed"
+                />
+              </div>
+            )
+          }
         </div>
       </div>
     </>

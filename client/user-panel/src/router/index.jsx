@@ -3,12 +3,13 @@ import MainLayout from '@/components/layouts/MainLayout';
 import mainRoutes from './mainRoutes';
 import Error from '@/components/pages/errorPages/Error';
 import CommonLayout from '@/components/layouts/CommonLayout';
+import { UserProvider } from '@/components/context/UserContext';
 
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <CommonLayout />,
+        element: <UserProvider><CommonLayout /></UserProvider>,
         errorElement: <Error />,
         children: [
             {

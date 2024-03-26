@@ -4,48 +4,27 @@ import {
   BannerCards,
   ProductSlider,
 } from "@/components/ui";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 const Home = () => {
-  const products = [
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
-    },
-    {
-      id: 1,
-      name: 'PA CITY LAMINATED BIKER',
-      price: '2263',
-      gallery: ['./src/assets/img/product_01_01.webp', './src/assets/img/product_01_02.webp']
+  const [latestProducts, setLatestProducts] = useState([]);
+
+  const fetchProducts = async (query = "") => {
+    const response = await fetch(import.meta.env.VITE_API_URL + '/admin/products' + query);
+    const result = await response.json();
+
+    if (!response.ok) {
+      toast.error(result.message);
+      return;
     }
-  ]
+
+    setLatestProducts(result.data)
+  }
+
+  useEffect(() => {
+    fetchProducts('?limit=5&sort=latest');
+  }, []);
 
 
   return (
@@ -73,8 +52,8 @@ const Home = () => {
       <section className="py-14">
         <ProductSlider>
           {
-            products.map(product => {
-              return <ProductCard className={'px-2 m-auto'} compact key={product.id} name={product.name} price={product.price} gallery={product.gallery} />
+            latestProducts.map(product => {
+              return <ProductCard key={product._id} link={'/shopping/-' + product._id} id={product._id} title={product.title} price={product.price}  gallery={product.images} sizes={product.sizes} colors={product.colors} compact />
             })
           }
         </ProductSlider>

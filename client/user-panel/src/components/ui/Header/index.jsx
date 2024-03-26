@@ -1,10 +1,15 @@
 import { Notice } from "@/components/ui"
-import { NavLink } from "react-router-dom"
-import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
+import { Link, NavLink, useNavigate } from "react-router-dom"
+import { Button, Menu, MenuButton, MenuItem, MenuList, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger } from "@chakra-ui/react"
 import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons"
-import {Bag, Search} from "react-bootstrap-icons"
+import { Bag, Search } from "react-bootstrap-icons"
 import { slide as BugerMenu } from "react-burger-menu"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { UserContext } from "@/components/context/UserContext"
+import useBag from "@/components/hooks/useBag"
+import useWishlist from "@/components/hooks/useWishlist"
+import useAuth from "@/components/hooks/useAuth"
+import Input from "../FormControls/Input"
 
 const Header = () => {
 
@@ -12,12 +17,12 @@ const Header = () => {
     {
       id: 1,
       name: 'Sale',
-      link: '/sale'
+      link: '/shop'
     },
     {
       id: 2,
       name: 'New In',
-      link: '#'
+      link: '/shop'
     },
     {
       id: 3,
@@ -27,21 +32,29 @@ const Header = () => {
     {
       id: 4,
       name: 'Woman',
-      link: '#'
+      link: '/shop'
     },
     {
       id: 5,
       name: 'Eyewear',
-      link: '#'
+      link: '/shop'
     },
     {
       id: 6,
       name: 'Kids',
-      link: '#'
+      link: '/shop'
     }
   ]
 
   const [stickyClass, setStickyClass] = useState('relative');
+  const [searchProducts, setSearchProducts] = useState([]);
+  const [searchStatus, setSearchStatus] = useState('idle');
+  const [searchPopupOpen, setSearchPopupOpen] = useState(false);
+
+  const auth = useAuth();
+  const { bag } = useBag();
+  const { wishlist } = useWishlist();
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   window.addEventListener('scroll', stickNavbar);
@@ -58,6 +71,38 @@ const Header = () => {
     }
   };
 
+  const handleSearch = async(event)=>{
+    const search = event.target.value;
+
+    // hit search api after 300ms
+    let timer;
+    if(search.length > 0){
+      setSearchStatus('loading');
+      if(timer) clearTimeout(timer);
+      timer = setTimeout(async()=>{
+        const response = await fetch(import.meta.env.VITE_API_URL + '/admin/products?search=' + search);
+        const result = await response.json();
+        console.log(result.data);
+        setSearchProducts(result.data);
+        setSearchStatus('done');
+      }, 500)
+    }
+  }
+
+  const handleSearchPopup = (e)=>{
+    setSearchPopupOpen(!searchPopupOpen);
+
+    if(searchPopupOpen){
+      setSearchStatus('idle');
+      setSearchProducts([]);
+
+      const productId = e.target.dataset.id;
+      if(productId){
+        window.location.href = '/shopping/' + productId
+      }
+    }
+  }
+
   return (
     <header className={`w-full ${stickyClass}`}>
       {/* Notice */}
@@ -72,7 +117,7 @@ const Header = () => {
       <div className="pageContent flex justify-between py-2 border-b bg-white">
         {/* Mobile Menu */}
         <div className="relative md:hidden">
-          <BugerMenu  customBurgerIcon={<HamburgerIcon />}>
+          <BugerMenu customBurgerIcon={<HamburgerIcon />}>
             {
               mainMenu.map((item) => {
                 return (
@@ -95,7 +140,41 @@ const Header = () => {
         </div>
 
         <div className="rightMenu hidden md:flex gap-6 items-center">
-          <NavLink className={`uppercase text-base font-semibold hover:text-primary`} >Search</NavLink>
+          <Popover isLazy isOpen={searchPopupOpen}>
+            <PopoverTrigger>
+              <span onClick={handleSearchPopup} variant="link" className="uppercase text-base font-semibold cursor-pointer hover:text-primary p-0">Search</span>
+            </PopoverTrigger>
+            <PopoverContent className="bg-white p-4 border w-[400px]">
+              <PopoverHeader fontWeight='semibold'>Search product</PopoverHeader>
+              <PopoverCloseButton onClick={handleSearchPopup} className="absolute right-2 top-2" />
+              <PopoverBody>
+                <Input onChange={handleSearch} type="text" placeholder="Search" />
+
+                {
+                  searchStatus == 'loading' ? (
+                    <p className="mt-4">Loading...</p>
+                  ) : 
+                  searchStatus == 'done' && (
+                    searchProducts.length > 0 ? (
+                      <ul className="mt-4 flex flex-col gap-2">
+                        {
+                          searchProducts.map((product)=>{
+                            return (
+                              <li key={product._id}>
+                                <span className="cursor-pointer" onClick={handleSearchPopup} data-id={product._id}>{product.title}</span>
+                              </li>
+                            )
+                          })
+                        }
+                      </ul>
+                    ) : (
+                      <p className="mt-4">No product found</p>
+                    )
+                  )
+                }
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
 
           <Menu>
             <MenuButton
@@ -114,11 +193,17 @@ const Header = () => {
             </MenuList>
           </Menu>
 
-          <NavLink to={"/login"} className={`uppercase text-base font-semibold hover:text-primary`} >Login</NavLink>
+          {
+            auth.isAuthenticated() ? (
+              <NavLink to={"/account/account-details"} className={`uppercase text-base font-semibold hover:text-primary`} >Account</NavLink>
+            ) : (
+              <NavLink to={"/login"} className={`uppercase text-base font-semibold hover:text-primary`} >Login</NavLink>
+            )
+          }
 
-          <NavLink className={`uppercase text-base font-semibold hover:text-primary`}>Wishlist (<span>0</span>)</NavLink>
+          <NavLink to={'/wishlist'} className={`uppercase text-base font-semibold hover:text-primary`}>Wishlist (<span>{wishlist.length}</span>)</NavLink>
 
-          <NavLink className={`uppercase text-base font-semibold hover:text-primary`}>Bag (<span>0</span>)</NavLink>
+          <NavLink to={'/bag'} className={`uppercase text-base font-semibold hover:text-primary`}>Bag (<span>{bag.items.length}</span>)</NavLink>
         </div>
 
         <div className="mobileRightMenu md:hidden flex gap-6 items-center">
