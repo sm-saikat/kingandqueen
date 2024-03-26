@@ -5,7 +5,6 @@ import useAuth from "../hooks/useAuth"
 
 
 const CommonLayout = () => {
-  const {authenticate} = useAuth();
   const auth = useAuth();
   const navigate = useNavigate();
 

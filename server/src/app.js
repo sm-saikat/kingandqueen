@@ -12,7 +12,7 @@ const userControllers = require('./api/user/controllers')
 
 // Midlewares
 app.use(cors({
-    origin: true,
+    origin: ['http://localhost:3000', 'https://kingandqueen.onrender.com'],
     credentials: true
 }));
 
