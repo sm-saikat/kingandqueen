@@ -6,7 +6,7 @@ const adminAuthenticate = require('../middlewares/adminAuthenticate');
 
 
 router.post('/authenticate', adminAuthenticate, (req, res, _next) => {
-
+    console.log(req.admin)
     res.status(200).json({
         ok: true,
         data: req.admin

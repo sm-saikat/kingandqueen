@@ -9,6 +9,7 @@ const login = async (req, res, next) => {
         console.log(req.body)
         // Check if user exists
         const admin = await Admin.findOne({ email });
+
         if (!admin) {
             throw new CustomError(401, 'Invlid Credentials');
         }
