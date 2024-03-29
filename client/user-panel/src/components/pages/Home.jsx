@@ -43,7 +43,7 @@ const Home = () => {
       <section>
         <Banner
           link={"href/index/"}
-          image={"./src/assets/img/3.webp"}
+          image={"assets/img/3.webp"}
           leftBtnText={"Left"}
           rightBtnText={"Right"}
         />
