@@ -34,8 +34,8 @@ const Home = () => {
           leftLink="/oneRout"
           rightLink="/twoRout"
           leftText="Left"
-          leftImage="./src/assets/img/1.webp"
-          rightImage="./src/assets/img/2.webp"
+          leftImage="assets/img/1.webp"
+          rightImage="assets/img/2.webp"
           rightText="Right"
         />
       </section>
