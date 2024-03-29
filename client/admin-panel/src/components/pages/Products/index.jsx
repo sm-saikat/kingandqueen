@@ -276,7 +276,7 @@ const Products = () => {
         const urlSuffix = editProduct ? '/' + editProduct._id : '';
 
         const productToast = toast.loading('Product is saving...');
-        const response = await fetch('http://localhost:5000/admin/products' + urlSuffix, {
+        const response = await fetch(import.meta.env.VITE_API_BASE_URL  + '/admin/products' + urlSuffix, {
             method: method,
             body: formData,
             credentials: 'include'
