@@ -26,12 +26,11 @@ const login = async (req, res, next) => {
         const cookieOpt = {
             expires: new Date(Date.now() + 24 * 3600000),
             httpOnly: true,
-            domain: 'localhost',
-            path: '/',
         };
 
         const adminData = admin.toObject();
         delete adminData.password;
+
         res.status(200).cookie('_auth_admin', token, cookieOpt).json({
             message: 'Admin loggedin successfully',
             data: adminData,

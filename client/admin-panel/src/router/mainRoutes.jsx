@@ -8,19 +8,19 @@ const mainRoutes = [
         element: <Dashboard />
     },
     {
-        path: '/products',
+        path: 'products',
         element: <Products />
     },
     {
-        path: '/category',
+        path: 'category',
         element: <Category />
     },
     {
-        path: '/customers',
+        path: 'customers',
         element: <Customers />
     },
     {
-        path: '/orders',
+        path: 'orders',
         element: <Orders />
     }
 ]

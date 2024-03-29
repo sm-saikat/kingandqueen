@@ -4,15 +4,17 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const cors = require('cors')
 const routes = require('./routes');
+const path = require('path');
 
 const {CustomError} = require('./utils')
 const passportConfg = require('./config/passportConfig')
 const userControllers = require('./api/user/controllers')
 
+app.set('trust proxy', 1);
 
 // Midlewares
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://kingandqueen.onrender.com'],
+    origin: ['http://localhost:3001', 'https://lively-folder-413216.uc.r.appspot.com'],
     credentials: true
 }));
 
@@ -34,6 +36,19 @@ app.get('/health', (req, res)=>{
     res.status(200).json({
         health: 'ok'
     })
+})
+
+app.use(express.static(path.join(__dirname, '../../client/admin-panel/dist')));
+// Admin panel route
+app.get('/admin*', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "../../client/admin-panel/dist/index.html"),
+        (err) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+        }
+    )
 })
 
 // Global Error Handler
