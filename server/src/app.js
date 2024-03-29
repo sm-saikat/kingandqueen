@@ -14,7 +14,7 @@ app.set('trust proxy', 1);
 
 // Midlewares
 app.use(cors({
-    origin: ['http://localhost:3001', 'https://lively-folder-413216.uc.r.appspot.com'],
+	origin: ['http://localhost:3001', 'http://admin.kingqueenss.com', 'http://kingqueenss.com'],
     credentials: true
 }));
 

@@ -24,8 +24,6 @@ const login = async (req, res, next) => {
         const cookieOpt = {
             expires: new Date(Date.now() + 24 * 3600000),
             httpOnly: true,
-            domain: 'localhost',
-            path: '/',
         };
 
         const userData = user.toObject();
